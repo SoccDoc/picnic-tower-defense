@@ -1,0 +1,14 @@
+-rootPath
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense
+-cmake-output
+-output-file
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug/.qt_plugins/Qt6_QmlPlugins_Imports_apppicnic-tower-defense.cmake
+-importPath
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug/picnic-tower-defense
+-importPath
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug
+-importPath
+C:/Qt/6.6.2/mingw_64/./qml
+-qrcFiles
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug/.rcc/qmake_picnic-tower-defense.qrc
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug/.rcc/apppicnic-tower-defense_raw_qml_0.qrc

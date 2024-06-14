@@ -1,0 +1,10 @@
+--bare
+-I
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug
+-I
+C:/Qt/6.6.2/mingw_64/./qml
+--resource
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug/.rcc/qmake_picnic-tower-defense.qrc
+--resource
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug/.rcc/apppicnic-tower-defense_raw_qml_0.qrc
+C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/Main.qml

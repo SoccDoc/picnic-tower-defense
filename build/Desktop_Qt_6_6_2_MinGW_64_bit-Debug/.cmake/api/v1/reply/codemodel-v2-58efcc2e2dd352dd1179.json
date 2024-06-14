@@ -1,0 +1,169 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-ac7e0f95c6cbd6e1edd9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "picnic-tower-defense",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-8f6c1675e5edff0cbffc.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-2a3dca2ce34d536742b0.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-d90d22ff4034d2b2d5ae.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-b6aa80d95f7554715323.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense-Debug-4207d8ffdf49a602b671.json",
+					"name" : "apppicnic-tower-defense",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_autogen-Debug-d89615e419272ae4dd5f.json",
+					"name" : "apppicnic-tower-defense_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_autogen_timestamp_deps-Debug-6d9a21f85eb223d2d874.json",
+					"name" : "apppicnic-tower-defense_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_qmlimportscan-Debug-493cfc87b682cd4df52a.json",
+					"name" : "apppicnic-tower-defense_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_qmllint-Debug-ee83151c1c1eae0975a8.json",
+					"name" : "apppicnic-tower-defense_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_qmllint_json-Debug-a76c26c695a0a5af547f.json",
+					"name" : "apppicnic-tower-defense_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_qmllint_module-Debug-0e4ede69688d23897ae0.json",
+					"name" : "apppicnic-tower-defense_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_qmltyperegistration-Debug-addf710e5ac436fed0d3.json",
+					"name" : "apppicnic-tower-defense_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apppicnic-tower-defense_tooling::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apppicnic-tower-defense_tooling-Debug-14281778fc60a4158e5e.json",
+					"name" : "apppicnic-tower-defense_tooling",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/build/Desktop_Qt_6_6_2_MinGW_64_bit-Debug",
+		"source" : "C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
