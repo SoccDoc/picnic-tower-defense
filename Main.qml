@@ -1,10 +1,17 @@
 import QtQuick
 
 Window {
+    id: mainWindow
     width: 640
     height: 480
     visible: true
     title: qsTr("Picnic Tower Defense")
+
+    Rectangle {
+        color: "green"
+        width: mainWindow.width
+        height: mainWindow.height
+    }
 
     Image {
         id: ant
