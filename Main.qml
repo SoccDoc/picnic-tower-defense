@@ -1,24 +1,31 @@
 import QtQuick
+import QtQuick.Controls
 
 Window {
     id: mainWindow
-    width: 640
-    height: 480
     visible: true
     title: qsTr("Picnic Tower Defense")
+    visibility: "FullScreen"
 
     // Background for the window
-    Rectangle {
-        color: "green"
+    Image {
+        id: background
+        visible: true
         width: mainWindow.width
         height: mainWindow.height
+        source: "qrc:/background.png"
+    }
+
+    Button {
+        text: "Close Application"
+        onClicked: mainWindow.close()
     }
 
     Image {
         id: ant
         visible: true
-        width: 100
-        height: 100
+        width: 50
+        height: 50
         source: "qrc:/ant.png"
     }
 
@@ -26,7 +33,7 @@ Window {
     PathAnimation {
         id: antPath
         running: true
-        duration: 3000
+        duration: 10000
         loops: 1
         onRunningChanged: triggerChangeProc()
 
@@ -34,11 +41,23 @@ Window {
         orientation: PathAnimation.TopFirst
         anchorPoint: Qt.point(ant.width/2, ant.height/2)
 
+        // The path to the picnic basket
         path: Path {
-            startX: 100; startY: 100
+            startX: 0; startY: 190
 
-           PathCurve { x: 100; y: 100}
-           PathCurve { x: 400; y: 500}
+           PathCurve { x: 300; y: 190}
+           PathCurve { x: 300; y: 470}
+           PathCurve { x: 540; y: 470}
+           PathCurve { x: 540; y: 650}
+           PathCurve { x: 350; y: 650}
+           PathCurve { x: 350; y: 870}
+           PathCurve { x: 1000; y: 870}
+           PathCurve { x: 1000; y: 580}
+           PathCurve { x: 820; y: 580}
+           PathCurve { x: 820; y: 330}
+           PathCurve { x: 1430; y: 330}
+           PathCurve { x: 1430; y: 730}
+           PathCurve { x: 2000; y: 730}
         }
     }
 
@@ -50,6 +69,8 @@ Window {
 
         // It is not, remove the ant
         ant.visible = false
+
+        // Subtract a life
     }
 
 }
