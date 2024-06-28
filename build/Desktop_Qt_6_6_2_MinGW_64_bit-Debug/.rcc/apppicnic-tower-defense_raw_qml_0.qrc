@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="/picnic-tower-defense/">
-    <file alias="Main.qml">C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/Main.qml</file>
-    <file alias="images.qrc">C:/Users/bcsid/OneDrive/Desktop/Code/picnic-tower-defense/images.qrc</file>
-  </qresource>
-</RCC>
-

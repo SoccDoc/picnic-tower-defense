@@ -1,5 +1,0 @@
-module picnic-tower-defense
-typeinfo apppicnic-tower-defense.qmltypes
-prefer :/picnic-tower-defense/
-Main 1.0 Main.qml
-
