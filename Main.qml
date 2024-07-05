@@ -47,6 +47,17 @@ Window {
                 onClicked: mainWindow.close()
             }
 
+            Label {
+                id: moneyLabel
+                text: "Gold: 100"
+
+                width: 125
+                height: 25
+
+                Layout.preferredWidth: width
+                Layout.preferredHeight: height
+            }
+
             // Button for buying frog tower
             Button {
                 id: frogTowerButton
@@ -62,7 +73,7 @@ Window {
                 icon.height: height
 
                 padding: 0
-                onClicked: spawnFrogTower()
+                onClicked: purchaseFrogTower()
             }
         }
     }
@@ -123,9 +134,22 @@ Window {
         // Subtract a life
     }
 
-    // Called when player buys a frog tower
-    function spawnFrogTower() {
+    // Called when player clicks on the frog tower buttno
+    function purchaseFrogTower() {
+        // Check if player has enough money
+        if (false)
+            return;
 
+        // Create a frog tower
+        var component = Qt.createComponent("FrogTower.qml");
+        if (component.status === Component.Ready) {
+            var frogTower = component.createObject(mainWindow);
+            frogTower.x = 400;
+            frogTower.y = 400;
+        }
+        else if (component.status === Component.Error) {
+            console.log(component.errorString());
+        }
     }
 
 }
