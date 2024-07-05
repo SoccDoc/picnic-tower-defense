@@ -8,6 +8,9 @@ Window {
     title: qsTr("Picnic Tower Defense")
     visibility: "FullScreen"
 
+    property int money
+    property int lives: 20
+
     GridLayout {
         anchors.fill: parent
         rows: 1
@@ -22,7 +25,7 @@ Window {
             Image {
                 visible: true
 
-                width: mainWindow.width - 200
+                width: mainWindow.width - 150
                 height: mainWindow.height
 
                 source: "qrc:/background.png"
@@ -31,7 +34,7 @@ Window {
 
         ColumnLayout {
             anchors.rightMargin: mainWindow.width
-            anchors.leftMargin: mainWindow.width - 200
+            anchors.leftMargin: mainWindow.width - 150
 
             // Button to close game
             Button {
@@ -48,8 +51,19 @@ Window {
             }
 
             Label {
+                id: livesLabel
+                text: "Lives: " + mainWindow.lives
+
+                width: 125
+                height: 25
+
+                Layout.preferredWidth: width
+                Layout.preferredHeight: height
+            }
+
+            Label {
                 id: moneyLabel
-                text: "Gold: 100"
+                text: "Gold: " + mainWindow.money
 
                 width: 125
                 height: 25
@@ -95,7 +109,7 @@ Window {
             running: true
             duration: 10000
             loops: 1
-            onRunningChanged: triggerChangeProc()
+            onRunningChanged: checkAntProgress()
 
             target: antImage
             orientation: PathAnimation.TopFirst
@@ -123,32 +137,32 @@ Window {
     }
 
     // Called when ant reaches end of path
-    function triggerChangeProc() {
+    function checkAntProgress() {
         // Check if the ant is still moving
         if (antPath.running === true)
             return
 
-        // It is not, remove the ant
-        antImage.visible = false
-
-        // Subtract a life
+        // It is not then it has reached the picnic basket
+        antImage.visible = false // remove the ant
+        mainWindow.money += 50 // give money
+        mainWindow.lives-- // subtract a life
     }
 
-    // Called when player clicks on the frog tower buttno
+    // Called when player clicks on the frog tower button
     function purchaseFrogTower() {
         // Check if player has enough money
-        if (false)
-            return;
+        if (mainWindow.money > 0)
+            return
 
         // Create a frog tower
-        var component = Qt.createComponent("FrogTower.qml");
+        var component = Qt.createComponent("FrogTower.qml")
         if (component.status === Component.Ready) {
-            var frogTower = component.createObject(mainWindow);
-            frogTower.x = 400;
-            frogTower.y = 400;
+            var frogTower = component.createObject(mainWindow)
+            frogTower.x = 400
+            frogTower.y = 400
         }
         else if (component.status === Component.Error) {
-            console.log(component.errorString());
+            console.log(component.errorString())
         }
     }
 
