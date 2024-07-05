@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 Window {
     id: mainWindow
@@ -7,57 +8,79 @@ Window {
     title: qsTr("Picnic Tower Defense")
     visibility: "FullScreen"
 
-    // Background for the window
-    Image {
-        id: background
-        visible: true
-        width: mainWindow.width
-        height: mainWindow.height
-        source: "qrc:/background.png"
+    GridLayout {
+        anchors.fill: parent
+        rows: 1
+        columns: 2
+
+        // Background for the window
+        Item {
+            id: background
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            Image {
+                visible: true
+
+                width: mainWindow.width - 200
+                height: mainWindow.height
+
+                source: "qrc:/background.png"
+            }
+        }
+
+        ColumnLayout {
+            anchors.rightMargin: mainWindow.width
+            anchors.leftMargin: mainWindow.width - 200
+
+            Button {
+                text: "Close Application"
+                onClicked: mainWindow.close()
+            }
+        }
     }
 
-    Button {
-        text: "Close Application"
-        onClicked: mainWindow.close()
-    }
-
-    Image {
+    Item {
         id: ant
-        visible: true
-        width: 50
-        height: 50
-        source: "qrc:/ant.png"
-    }
 
-    // Animation for ant to move along path
-    PathAnimation {
-        id: antPath
-        running: true
-        duration: 10000
-        loops: 1
-        onRunningChanged: triggerChangeProc()
+        Image {
+            id: antImage
+            visible: true
+            width: 50
+            height: 50
+            source: "qrc:/ant.png"
+        }
 
-        target: ant
-        orientation: PathAnimation.TopFirst
-        anchorPoint: Qt.point(ant.width/2, ant.height/2)
+        // Animation for ant to move along path
+        PathAnimation {
+            id: antPath
+            running: true
+            duration: 10000
+            loops: 1
+            onRunningChanged: triggerChangeProc()
 
-        // The path to the picnic basket
-        path: Path {
-            startX: 0; startY: 190
+            target: antImage
+            orientation: PathAnimation.TopFirst
+            anchorPoint: Qt.point(antImage.width/2, antImage.height/2)
 
-           PathCurve { x: 300; y: 190}
-           PathCurve { x: 300; y: 470}
-           PathCurve { x: 540; y: 470}
-           PathCurve { x: 540; y: 650}
-           PathCurve { x: 350; y: 650}
-           PathCurve { x: 350; y: 870}
-           PathCurve { x: 1000; y: 870}
-           PathCurve { x: 1000; y: 580}
-           PathCurve { x: 820; y: 580}
-           PathCurve { x: 820; y: 330}
-           PathCurve { x: 1430; y: 330}
-           PathCurve { x: 1430; y: 730}
-           PathCurve { x: 2000; y: 730}
+            // The path to the picnic basket
+            path: Path {
+                startX: 0; startY: 190
+
+               PathCurve { x: 300; y: 190}
+               PathCurve { x: 300; y: 470}
+               PathCurve { x: 540; y: 470}
+               PathCurve { x: 540; y: 650}
+               PathCurve { x: 350; y: 650}
+               PathCurve { x: 350; y: 870}
+               PathCurve { x: 1000; y: 870}
+               PathCurve { x: 1000; y: 580}
+               PathCurve { x: 820; y: 580}
+               PathCurve { x: 820; y: 330}
+               PathCurve { x: 1430; y: 330}
+               PathCurve { x: 1430; y: 730}
+               PathCurve { x: 2000; y: 730}
+            }
         }
     }
 
@@ -68,7 +91,7 @@ Window {
             return
 
         // It is not, remove the ant
-        ant.visible = false
+        antImage.visible = false
 
         // Subtract a life
     }
