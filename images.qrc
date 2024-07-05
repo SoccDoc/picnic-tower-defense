@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>ant.png</file>
         <file>background.png</file>
+        <file>frog tower.png</file>
     </qresource>
 </RCC>

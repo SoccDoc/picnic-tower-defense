@@ -33,9 +33,36 @@ Window {
             anchors.rightMargin: mainWindow.width
             anchors.leftMargin: mainWindow.width - 200
 
+            // Button to close game
             Button {
+                id: closeWindowButton
+
+                width: 125
+                height: 25
+
+                Layout.preferredWidth: width
+                Layout.preferredHeight: height
+
                 text: "Close Application"
                 onClicked: mainWindow.close()
+            }
+
+            // Button for buying frog tower
+            Button {
+                id: frogTowerButton
+                width: 125
+                height: 125
+
+                Layout.preferredWidth: width
+                Layout.preferredHeight: height
+
+                icon.source: "qrc:/frog tower.png"
+                icon.color: "transparent"
+                icon.width: width
+                icon.height: height
+
+                padding: 0
+                onClicked: spawnFrogTower()
             }
         }
     }
@@ -94,6 +121,11 @@ Window {
         antImage.visible = false
 
         // Subtract a life
+    }
+
+    // Called when player buys a frog tower
+    function spawnFrogTower() {
+
     }
 
 }
