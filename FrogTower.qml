@@ -1,7 +1,11 @@
-import QtQuick
+import QtQuick 
 
 Item {
     id: root
+
+    function positionChanged(MouseEvent mouse) {
+        Item.x = mouse
+    }
 
     Image {
         id: frogImage
