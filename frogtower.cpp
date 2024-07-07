@@ -13,8 +13,8 @@ void FrogTower::setImage(QMouseEvent mouse) {
 
 }
 
-void FrogTower::setX(const int newX) { x = newX;}
-void FrogTower::setY(const int newY) { y = newY;}
+void FrogTower::setX(const int newX) {x = newX;}
+void FrogTower::setY(const int newY) {y = newY;}
 
-QColor FrogTower::X() const { return x;}
-QColor FrogTower::Y() const { return y;}
+int FrogTower::X() const {return x;}
+int FrogTower::Y() const {return y;}

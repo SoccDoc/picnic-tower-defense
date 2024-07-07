@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QtQuick>
 
-class FrogTower
+class FrogTower: public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int x READ X WRITE setX NOTIFY xChanged)
@@ -16,8 +16,8 @@ public:
     void setX(const int newX);
     void setY(const int newY);
 
-    QColor X() const;
-    QColor Y() const;
+    int X() const;
+    int Y() const;
 
 signals:
     void xChanged();
