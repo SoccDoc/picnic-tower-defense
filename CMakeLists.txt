@@ -22,7 +22,8 @@ qt_add_qml_module(apppicnic-tower-defense
         Main.qml
         RESOURCES images.qrc
         QML_FILES
-        SOURCES frogtower.h frogtower.cpp
+        SOURCES
+        QML_FILES FrogTower.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
