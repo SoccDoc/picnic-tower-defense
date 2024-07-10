@@ -11,6 +11,13 @@ Window {
     property int money
     property int lives: 20
 
+    Rectangle {
+        id: backgroundOutline
+        width:  mainWindow.width - 150
+        height: mainWindow.height
+    }
+
+
     GridLayout {
         anchors.fill: parent
         rows: 1
@@ -25,8 +32,8 @@ Window {
             Image {
                 visible: true
 
-                width: mainWindow.width - 150
-                height: mainWindow.height
+                width: backgroundOutline.width
+                height: backgroundOutline.height
 
                 source: "qrc:/background.png"
             }
@@ -96,6 +103,7 @@ Window {
         id: frogTower
         x: 100
         y: 100
+        property bool set: false
 
         Image {
             id: frogImage
@@ -103,24 +111,23 @@ Window {
             height: 125
             source: "qrc:/frog tower.png"
         }
-
     }
 
     MouseArea {
         id: mouseArea
         hoverEnabled: true
-        anchors.fill: parent
-        acceptedButtons: Qt.NoButton
+        anchors.fill: backgroundOutline
 
         onClicked: {
-            frogTower.x = frogTower.x
-            frogTower.y = frogTower.y
+            frogTower.set = true
             console.log("clicked tower")
         }
 
         onPositionChanged: {
-            frogTower.x = mouseArea.mouseX
-            frogTower.y = mouseArea.mouseY
+            if (!frogTower.set) {
+                frogTower.x = mouseArea.mouseX
+                frogTower.y = mouseArea.mouseY
+            }
         }
     }
 
