@@ -93,6 +93,39 @@ Window {
     }
 
     Item {
+        id: frogTower
+        x: 100
+        y: 100
+
+        Image {
+            id: frogImage
+            width: 125
+            height: 125
+            source: "qrc:/frog tower.png"
+        }
+
+    }
+
+    MouseArea {
+        id: mouseArea
+        hoverEnabled: true
+        anchors.fill: parent
+        acceptedButtons: Qt.NoButton
+
+        onClicked: {
+            frogTower.x = frogTower.x
+            frogTower.y = frogTower.y
+            console.log("clicked tower")
+        }
+
+        onPositionChanged: {
+            frogTower.x = mouseArea.mouseX
+            frogTower.y = mouseArea.mouseY
+        }
+    }
+
+
+    Item {
         id: ant
 
         Image {
@@ -158,8 +191,8 @@ Window {
         var component = Qt.createComponent("FrogTower.qml")
         if (component.status === Component.Ready) {
             var frogTower = component.createObject(mainWindow)
-            frogTower.x = 400
-            frogTower.y = 400
+            // frogTower.x = 400
+            // frogTower.y = 400
         }
         else if (component.status === Component.Error) {
             console.log(component.errorString())
