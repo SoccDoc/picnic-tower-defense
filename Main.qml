@@ -11,13 +11,14 @@ Window {
     property int money
     property int lives: 20
 
+    // Represents the playing field
     Rectangle {
         id: backgroundOutline
         width:  mainWindow.width - 150
         height: mainWindow.height
     }
 
-
+    // Organizes the buttons and playing field
     GridLayout {
         anchors.fill: parent
         rows: 1
@@ -79,7 +80,7 @@ Window {
                 Layout.preferredHeight: height
             }
 
-            // Button for buying frog tower
+            // Button for buying frog towers
             Button {
                 id: frogTowerButton
                 width: 125
@@ -99,39 +100,28 @@ Window {
         }
     }
 
-    Item {
-        id: frogTower
-        x: 100
-        y: 100
-        property bool set: false
-
-        Image {
-            id: frogImage
-            width: 125
-            height: 125
-            source: "qrc:/frog tower.png"
-        }
-    }
-
+    // Tracks the mouse when it is in the playing field
     MouseArea {
         id: mouseArea
         hoverEnabled: true
         anchors.fill: backgroundOutline
         property var currentFrogTower
 
-        onClicked: {
-            currentFrogTower = undefined
-        }
-
+        // Make the tower follow the users mouse
         onPositionChanged: {
             if (currentFrogTower !== undefined) {
                 currentFrogTower.x = mouseArea.mouseX
                 currentFrogTower.y = mouseArea.mouseY
             }
         }
+
+        // When clicked, unbind the tower so it stays where the user clicked
+        onClicked: {
+            currentFrogTower = undefined
+        }
     }
 
-
+    // A sample ant components (to be extracted)
     Item {
         id: ant
 
@@ -176,7 +166,7 @@ Window {
         }
     }
 
-    // Called when ant reaches end of path
+    // Called when ant reaches end of a path segment
     function checkAntProgress() {
         // Check if the ant is still moving
         if (antPath.running === true)
@@ -197,10 +187,12 @@ Window {
         // Create a frog tower
         var component = Qt.createComponent("FrogTower.qml")
         if (component.status === Component.Ready) {
+            // If the frog tower is ready, bind it to the mouse area
             var frogTower = component.createObject(mainWindow)
             mouseArea.currentFrogTower = frogTower
         }
         else if (component.status === Component.Error) {
+            // Frog tower is not ready, print why
             console.log(component.errorString())
         }
     }

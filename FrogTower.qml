@@ -2,8 +2,8 @@ import QtQuick
 
 Item {
     id: root
-    x: 100
-    y: 100
+    x: 10000
+    y: 10000
 
     Image {
         id: frogImage
