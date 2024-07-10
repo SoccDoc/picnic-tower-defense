@@ -1,9 +1,13 @@
-import QtQuick
+import QtQuick 
 
 Item {
     id: root
     x: mouseArea.mouseXChanged()
     y: mouseArea.mouseYChanged()
+
+    function positionChanged(MouseEvent mouse) {
+        Item.x = mouse
+    }
 
     Image {
         id: frogImage
