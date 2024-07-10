@@ -117,16 +117,16 @@ Window {
         id: mouseArea
         hoverEnabled: true
         anchors.fill: backgroundOutline
+        property var currentFrogTower
 
         onClicked: {
-            frogTower.set = true
-            console.log("clicked tower")
+            currentFrogTower = undefined
         }
 
         onPositionChanged: {
-            if (!frogTower.set) {
-                frogTower.x = mouseArea.mouseX
-                frogTower.y = mouseArea.mouseY
+            if (currentFrogTower !== undefined) {
+                currentFrogTower.x = mouseArea.mouseX
+                currentFrogTower.y = mouseArea.mouseY
             }
         }
     }
@@ -198,8 +198,7 @@ Window {
         var component = Qt.createComponent("FrogTower.qml")
         if (component.status === Component.Ready) {
             var frogTower = component.createObject(mainWindow)
-            // frogTower.x = 400
-            // frogTower.y = 400
+            mouseArea.currentFrogTower = frogTower
         }
         else if (component.status === Component.Error) {
             console.log(component.errorString())
