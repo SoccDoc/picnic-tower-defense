@@ -8,8 +8,9 @@ Window {
     title: qsTr("Picnic Tower Defense")
     visibility: "FullScreen"
 
-    property int money
+    property int money: 200
     property int lives: 20
+    property int frogTowerCost: 50
 
     // Represents the playing field
     Rectangle {
@@ -181,8 +182,11 @@ Window {
     // Called when player clicks on the frog tower button
     function purchaseFrogTower() {
         // Check if player has enough money
-        if (mainWindow.money > 0)
+        if (money < frogTowerCost)
             return
+
+        // Take money
+        money -= frogTowerCost;
 
         // Create a frog tower
         var component = Qt.createComponent("FrogTower.qml")
