@@ -118,6 +118,7 @@ Window {
 
         // When clicked, unbind the tower so it stays where the user clicked
         onClicked: {
+            currentFrogTower.rangeColor = "#00FFFFFF"
             currentFrogTower = undefined
         }
     }
