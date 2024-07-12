@@ -24,6 +24,7 @@ qt_add_qml_module(apppicnic-tower-defense
         QML_FILES
         SOURCES
         QML_FILES FrogTower.qml
+        QML_FILES Ant.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
