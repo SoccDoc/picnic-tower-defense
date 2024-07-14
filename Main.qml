@@ -123,11 +123,11 @@ Window {
         }
     }
 
-    // I can't believe this actually works
+    // Initial testing ant
     Ant {
         onAntDied: {
-            money += 50
-            lives--
+            mainWindow.money += 50
+            mainWindow.lives--
         }
     }
 
