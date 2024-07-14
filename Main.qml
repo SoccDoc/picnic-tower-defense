@@ -11,6 +11,7 @@ Window {
     property int money: 200
     property int lives: 20
     property int frogTowerCost: 50
+    property list<FrogTower> towers
 
     // Represents the playing field
     Rectangle {
@@ -118,6 +119,7 @@ Window {
 
         // When clicked, unbind the tower so it stays where the user clicked
         onClicked: {
+            towers.push(currentFrogTower)
             currentFrogTower.rangeColor = "#00FFFFFF"
             currentFrogTower = undefined
         }
@@ -126,8 +128,17 @@ Window {
     // Initial testing ant
     Ant {
         onAntDied: {
+            // If ant reached end of path, take a life
+            if (this.reachedEnd)
+                mainWindow.lives--
+
             mainWindow.money += 50
-            mainWindow.lives--
+        }
+
+        onXChanged: {
+            // Check if this ant is in range of any frog tower
+            for (var i = 0; i < towers.length; i++)
+                towers[i].checkAnt(this);
         }
     }
 

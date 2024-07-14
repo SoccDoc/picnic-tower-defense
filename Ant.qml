@@ -2,6 +2,10 @@ import QtQuick
 
 Item {
     id: root
+    property int health: 100
+    property bool reachedEnd: false
+
+    signal antDied()
 
     Image {
         id: antImage
@@ -19,7 +23,7 @@ Item {
         loops: 1
         onRunningChanged: checkAntProgress()
 
-        target: antImage
+        target: root
         orientation: PathAnimation.TopFirst
         anchorPoint: Qt.point(antImage.width/2, antImage.height/2)
 
@@ -43,7 +47,6 @@ Item {
         }
     }
 
-    signal antDied()
 
     // Called when ant reaches end of a path segment
     function checkAntProgress() {
@@ -52,7 +55,19 @@ Item {
             return
 
         // It has reached the picnic basket
-        antImage.visible = false // remove the ant
-        root.antDied() // Call signal to update ant death
+        root.reachedEnd = true
+        root.antDied()
+        root.destroy()
+    }
+
+    function dealDamage(damage) {
+        // Take damage
+        health -= damage;
+
+        // If health is below zero, kill the ant
+        if (health < 0) {
+            root.antDied()
+            root.destroy()
+        }
     }
 }
