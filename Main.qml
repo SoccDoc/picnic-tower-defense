@@ -125,19 +125,10 @@ Window {
 
     // I can't believe this actually works
     Ant {
-
-    }
-
-    // Called when ant reaches end of a path segment
-    function checkAntProgress() {
-        // Check if the ant is still moving
-        if (antPath.running === true)
-            return
-
-        // It is not then it has reached the picnic basket
-        antImage.visible = false // remove the ant
-        mainWindow.money += 50 // give money
-        mainWindow.lives-- // subtract a life
+        onAntDied: {
+            money += 50
+            lives--
+        }
     }
 
     // Called when player clicks on the frog tower button

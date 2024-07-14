@@ -42,4 +42,17 @@ Item {
            PathCurve { x: 2000; y: 730}
         }
     }
+
+    signal antDied()
+
+    // Called when ant reaches end of a path segment
+    function checkAntProgress() {
+        // Check if the ant is still moving
+        if (antPath.running === true)
+            return
+
+        // It has reached the picnic basket
+        antImage.visible = false // remove the ant
+        root.antDied() // Call signal to update ant death
+    }
 }
