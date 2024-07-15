@@ -19,7 +19,7 @@ Item {
     PathAnimation {
         id: antPath
         running: true
-        duration: 10000
+        duration: 100000
         loops: 1
         onRunningChanged: checkAntProgress()
 
