@@ -6,6 +6,15 @@ Item {
     y: 10000
     property string rangeColor: "black"
 
+    Rectangle {
+        id: tongue
+        x: 57 // Offset from frog tower
+        y: -15
+        width: 10
+        height: 50
+        color: "red"
+    }
+
     Image {
         id: frogImage
         width: 125
@@ -29,7 +38,15 @@ Item {
         if (!antIsInRange(ant))
             return;
 
-        // It is, so deal damage
+        // Turn frog towards ant
+        var xAbsolute = Math.abs(x - ant.x)
+        var yAbsolute = Math.abs(y - ant.y)
+        var angle = Math.atan2(xAbsolute, yAbsolute) * 100
+        root.rotation = angle
+
+        console.log(angle)
+
+        // Attack the ant!
         ant.dealDamage(50);
     }
 
