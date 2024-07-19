@@ -12,22 +12,19 @@ Window {
     property int lives: 20
     property int frogTowerCost: 50
     property list<FrogTower> towers
-
-    // Ratios for how much of the screen is taken up by game and how much is menu
-    readonly property double windowRatioOfGameBoard: 0.922
-    readonly property double windowRatioOfMenu: 0.078
+    readonly property int menuColumnWidth: 150
 
     // Populate scalers so the ant still follows the path on different resolutions
-    readonly property int mainWindowDefaultX: 1920
+    readonly property int mainWindowDefaultX: 1920 - menuColumnWidth
     readonly property int mainWindowDefaultY: 1080
-    readonly property int mainWindowScalerX: mainWindowDefaultX / mainWindow.width
+    readonly property int mainWindowScalerX: mainWindowDefaultX / (mainWindow.width - menuColumnWidth)
     readonly property int mainWindowScalerY: mainWindowDefaultY / mainWindow.height
 
 
     // Represents the playing field
     Rectangle {
         id: background
-        width: mainWindow.width * 0.922
+        width: mainWindow.width - menuColumnWidth
         height: mainWindow.height
     }
 
