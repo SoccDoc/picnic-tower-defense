@@ -19,7 +19,7 @@ Item {
     PathAnimation {
         id: antPath
         running: true
-        duration: 100000
+        duration: 10000
         loops: 1
         onRunningChanged: checkAntProgress()
 
@@ -31,18 +31,23 @@ Item {
         path: Path {
             startX: 0; startY: 190
 
-           PathCurve { x: 300; y: 190}
-           PathCurve { x: 300; y: 470}
-           PathCurve { x: 540; y: 470}
-           PathCurve { x: 540; y: 650}
-           PathCurve { x: 350; y: 650}
-           PathCurve { x: 350; y: 870}
-           PathCurve { x: 1000; y: 870}
-           PathCurve { x: 1000; y: 580}
-           PathCurve { x: 820; y: 580}
-           PathCurve { x: 820; y: 330}
-           PathCurve { x: 1430; y: 330}
-           PathCurve { x: 1430; y: 730}
+           PathCurve { x: 285; y: 190}
+           PathCurve { x: 285; y: 460}
+
+           PathCurve { x: 490; y: 460}
+           PathCurve { x: 490; y: 650}
+
+           PathCurve { x: 340; y: 650}
+           PathCurve { x: 340; y: 870}
+
+           PathCurve { x: 920; y: 870}
+           PathCurve { x: 920; y: 580}
+
+           PathCurve { x: 780; y: 580}
+           PathCurve { x: 780; y: 330}
+
+           PathCurve { x: 1340; y: 330}
+           PathCurve { x: 1340; y: 730}
            PathCurve { x: 2000; y: 730}
         }
     }

@@ -62,8 +62,6 @@ Item {
         var degreesAngle = radiansAngle * (180 / Math.PI)
         root.rotation = degreesAngle
 
-        console.log(degreesAngle)
-
         // Stick out tongue
         tongue.height = distance
 
