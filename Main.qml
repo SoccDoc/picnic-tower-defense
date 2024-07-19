@@ -17,9 +17,8 @@ Window {
     // Populate scalers so the ant still follows the path on different resolutions
     readonly property int mainWindowDefaultX: 1920 - menuColumnWidth
     readonly property int mainWindowDefaultY: 1080
-    readonly property int mainWindowScalerX: mainWindowDefaultX / (mainWindow.width - menuColumnWidth)
-    readonly property int mainWindowScalerY: mainWindowDefaultY / mainWindow.height
-
+    readonly property double mainWindowScalerX: (mainWindow.width - menuColumnWidth) / mainWindowDefaultX
+    readonly property double mainWindowScalerY: mainWindow.height / mainWindowDefaultY
 
     // Represents the playing field
     Rectangle {
