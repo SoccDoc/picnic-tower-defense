@@ -5,6 +5,9 @@ Item {
     property int health: 100
     property bool reachedEnd: false
 
+    property double xPathScaler: 1
+    property double yPathScaler: 1
+
     signal antDied()
 
     Image {
@@ -29,26 +32,39 @@ Item {
 
         // The path to the picnic basket
         path: Path {
-            startX: 0; startY: 190
+            startX: 0 * xPathScaler; startY: 190 * yPathScaler
 
-           PathCurve { x: 285; y: 190}
-           PathCurve { x: 285; y: 460}
+           PathCurve { x: 285 * xPathScaler;
+                        y: 190 * yPathScaler}
+           PathCurve { x: 285 * xPathScaler;
+                        y: 460 * yPathScaler}
 
-           PathCurve { x: 490; y: 460}
-           PathCurve { x: 490; y: 650}
+           PathCurve { x: 490 * xPathScaler;
+                        y: 460 * yPathScaler}
+           PathCurve { x: 490 * xPathScaler;
+                        y: 650 * yPathScaler}
 
-           PathCurve { x: 340; y: 650}
-           PathCurve { x: 340; y: 870}
+           PathCurve { x: 340 * xPathScaler;
+                        y: 650 * yPathScaler}
+           PathCurve { x: 340 * xPathScaler;
+                        y: 870 * yPathScaler}
 
-           PathCurve { x: 920; y: 870}
-           PathCurve { x: 920; y: 580}
+           PathCurve { x: 920 * xPathScaler;
+                        y: 870 * yPathScaler}
+           PathCurve { x: 920 * xPathScaler;
+                        y: 580 * yPathScaler}
 
-           PathCurve { x: 780; y: 580}
-           PathCurve { x: 780; y: 330}
+           PathCurve { x: 780 * xPathScaler;
+                        y: 580 * yPathScaler}
+           PathCurve { x: 780 * xPathScaler;
+                        y: 330 * yPathScaler}
 
-           PathCurve { x: 1340; y: 330}
-           PathCurve { x: 1340; y: 730}
-           PathCurve { x: 2000; y: 730}
+           PathCurve { x: 1340 * xPathScaler;
+                        y: 330 * yPathScaler}
+           PathCurve { x: 1340 * xPathScaler;
+                        y: 730 * yPathScaler}
+           PathCurve { x: 2000 * xPathScaler;
+                        y: 730 * yPathScaler}
         }
     }
 

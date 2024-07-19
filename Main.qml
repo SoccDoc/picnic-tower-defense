@@ -13,10 +13,21 @@ Window {
     property int frogTowerCost: 50
     property list<FrogTower> towers
 
+    // Ratios for how much of the screen is taken up by game and how much is menu
+    readonly property double windowRatioOfGameBoard: 0.922
+    readonly property double windowRatioOfMenu: 0.078
+
+    // Populate scalers so the ant still follows the path on different resolutions
+    readonly property int mainWindowDefaultX: 1920
+    readonly property int mainWindowDefaultY: 1080
+    readonly property int mainWindowScalerX: mainWindowDefaultX / mainWindow.width
+    readonly property int mainWindowScalerY: mainWindowDefaultY / mainWindow.height
+
+
     // Represents the playing field
     Rectangle {
-        id: backgroundOutline
-        width:  mainWindow.width - 150
+        id: background
+        width: mainWindow.width * 0.922
         height: mainWindow.height
     }
 
@@ -28,15 +39,15 @@ Window {
 
         // Background for the window
         Item {
-            id: background
+            id: backgroundImage
             Layout.fillHeight: true
             Layout.fillWidth: true
 
             Image {
                 visible: true
 
-                width: backgroundOutline.width
-                height: backgroundOutline.height
+                width: background.width
+                height: background.height
 
                 source: "qrc:/background.png"
             }
@@ -44,7 +55,7 @@ Window {
 
         ColumnLayout {
             anchors.rightMargin: mainWindow.width
-            anchors.leftMargin: mainWindow.width - 150
+            anchors.leftMargin: background.width
 
             // Button to close game
             Button {
@@ -106,7 +117,7 @@ Window {
     MouseArea {
         id: mouseArea
         hoverEnabled: true
-        anchors.fill: backgroundOutline
+        anchors.fill: background
         property var currentFrogTower
 
         // Make the tower follow the users mouse
@@ -127,6 +138,9 @@ Window {
 
     // Initial testing ant
     Ant {
+        xPathScaler: mainWindowScalerX
+        yPathScaler: mainWindowScalerY
+
         onAntDied: {
             // If ant reached end of path, take a life
             if (this.reachedEnd)
