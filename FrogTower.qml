@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Shapes
 
 Item {
     id: root
@@ -10,7 +11,7 @@ Item {
 
     Timer {
         id: attackCooldown
-        interval: 1000
+        interval: 200
         running: true
         onTriggered: attackIsOnCooldown = false
     }
@@ -51,16 +52,21 @@ Item {
             return;
 
         // Check if ant is in range of frog
-        var distance = antDistance(ant)
+        var distance = findDistance(ant)
         if (distance > range.radius)
             return;
 
         // Turn frog towards ant
-        var xAbsolute = ant.x - x
-        var yAbsolute = ant.y - y
-        var radiansAngle = Math.atan2(yAbsolute, xAbsolute)
+        var xAbsolute = Math.abs(ant.x - x)
+        var yAbsolute = Math.abs(ant.y - y)
+        var slope = yAbsolute / xAbsolute
+        var radiansAngle = Math.atan(slope)
         var degreesAngle = radiansAngle * (180 / Math.PI)
         root.rotation = degreesAngle
+
+        // console.log(xAbsolute + ", " + yAbsolute)
+        // console.log(slope + ", " + degreesAngle)
+        // console.log()
 
         // Stick out tongue
         tongue.height = distance
@@ -71,7 +77,7 @@ Item {
         attackCooldown.start()
     }
 
-    function antDistance(ant) {
+    function findDistance(ant) {
         // Find distance from frog and ant
         var xDistance = Math.pow(root.x - ant.x, 2)
         var yDistance = Math.pow(root.y - ant.y, 2)
