@@ -57,30 +57,26 @@ Item {
             return;
 
         // Turn frog towards ant
-        var xAbsolute = Math.abs(ant.x - x)
-        var yAbsolute = Math.abs(ant.y - y)
-        var slope = yAbsolute / xAbsolute
-        var radiansAngle = Math.atan(slope)
+        var xRelative = (ant.x+50) - root.x
+        var yRelative = (ant.y+50) - root.y
+        var slope = yRelative / xRelative
+        var radiansAngle = Math.atan2(yRelative, xRelative)
         var degreesAngle = radiansAngle * (180 / Math.PI)
-        root.rotation = degreesAngle
-
-        // console.log(xAbsolute + ", " + yAbsolute)
-        // console.log(slope + ", " + degreesAngle)
-        // console.log()
+        root.rotation = degreesAngle - 90
 
         // Stick out tongue
-        tongue.height = distance
+        tongue.height = distance - 20
 
         // Attack the ant!
-        //ant.dealDamage(50);
+        ant.dealDamage(50);
         attackIsOnCooldown = true
         attackCooldown.start()
     }
 
     function findDistance(ant) {
         // Find distance from frog and ant
-        var xDistance = Math.pow(root.x - ant.x, 2)
-        var yDistance = Math.pow(root.y - ant.y, 2)
+        var xDistance = Math.pow(root.x - (ant.x+50), 2)
+        var yDistance = Math.pow(root.y - (ant.y+50), 2)
         var realDistance = Math.sqrt(xDistance + yDistance)
         return realDistance
     }
