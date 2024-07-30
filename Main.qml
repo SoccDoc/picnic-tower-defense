@@ -12,7 +12,9 @@ Window {
     property int lives: 20
     property int frogTowerCost: 50
     property list<FrogTower> towers
+    property list<Ant> ants
     readonly property int menuColumnWidth: 150
+    readonly property double frameRate: 1000/60 // 60fps
 
     // Populate scalers so the ant still follows the path on different resolutions
     readonly property int mainWindowDefaultX: 1920 - menuColumnWidth
@@ -132,23 +134,35 @@ Window {
         }
     }
 
+    // Has all towers attempt to fire
+    Timer {
+        id: fireTowers
+        interval: frameRate
+        running: true
+        onTriggered: fireAllTowers()
+    }
+
+    function fireAllTowers() {
+        console.log("firing towers " + towers.length)
+        console.log("at ants " + ants.length)
+
+        // Check if any ant is in range of any frog tower
+        for (var i = 0; i < towers.length; i++)
+            for (var j = 0; j < ants.length; j++)
+                towers[i].checkAnt(ants[j]);
+
+        // Restart timer to fire again
+        fireTowers.start()
+    }
+
     // Initial testing ant
     Ant {
-        xPathScaler: mainWindowScalerX
-        yPathScaler: mainWindowScalerY
-
         onAntDied: {
             // If ant reached end of path, take a life
             if (this.reachedEnd)
                 mainWindow.lives--
 
             mainWindow.money += 50
-        }
-
-        onXChanged: {
-            // Check if this ant is in range of any frog tower
-            for (var i = 0; i < towers.length; i++)
-                towers[i].checkAnt(this);
         }
     }
 
@@ -159,6 +173,9 @@ Window {
             var component = Qt.createComponent("Ant.qml")
             if (component.status === Component.Ready) {
                 var ant = component.createObject(mainWindow)
+                ant.xPathScaler = mainWindowScalerX
+                ant.yPathScaler = mainWindowScalerY
+                ants.push(ant)
             }
             else if (component.status === Component.Error) {
                 // Ant not ready, print why

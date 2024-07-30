@@ -5,6 +5,7 @@ Item {
     id: root
     x: 10000 // Spawn off screen
     y: 10000
+    z: 10 // Place frog on top of other objects
 
     property string rangeColor: "black"
     property bool attackIsOnCooldown: true
@@ -18,7 +19,7 @@ Item {
 
     Rectangle {
         id: tongue
-        x: -3 // Offset from frog tower
+        x: -3 // Offset from frog image
         y: 30
         width: 10
         height: 50
@@ -27,21 +28,21 @@ Item {
 
     Image {
         id: frogImage
-        x: -60
+        x: -60 // Center frog image
         y: -60
-        width: 125
-        height: 125
+        width: 120
+        height: 120
         rotation: 180
         source: "qrc:/frog tower.png"
     }
 
     Rectangle {
-        id: range
-        x: -145 // Offset from frog tower
-        y: -145
+        id: rangeIndicator
+        x: -150 // Center range indicator
+        y: -150
         width: 300 // Size of circle
         height: 300
-        color:  "#00FFFFFF" // Transparent
+        color:  "#00FFFFFF" // Make circle transparent
         border.color: rangeColor
         radius: 180 // Makes it a circle
     }
@@ -53,7 +54,7 @@ Item {
 
         // Check if ant is in range of frog
         var distance = findDistance(ant)
-        if (distance > range.radius)
+        if (distance > rangeIndicator.radius)
             return;
 
         // Turn frog towards ant
