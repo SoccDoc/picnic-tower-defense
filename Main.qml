@@ -150,14 +150,14 @@ Window {
                 var currentAnt = ants[j]
 
                 // Adjust the ants x and y then send to tower
-                // var antImageOffset = currentAnt.imageSize / 2
-                // var adjustedAntX = currentAnt.x - antImageOffset
-                // var adjustedAntY = currentAnt.y - antImageOffset
-                var attackIsSuccessful = currentFrog.checkAnt(currentAnt);
+                var antImageOffset = currentAnt.imageSize / 2
+                var adjustedAntX = currentAnt.x + antImageOffset
+                var adjustedAntY = currentAnt.y + antImageOffset
+                var attackIsSuccessful = currentFrog.tryToAttackAnt(adjustedAntX, adjustedAntY);
 
                 // If frog lands an attack, deal damage
-                // if (attackIsSuccessful)
-                //     currentAnt.dealDamage(currentFrog.attackDamage)
+                if (attackIsSuccessful)
+                    currentAnt.dealDamage(currentFrog.attackDamage)
             }
         }
 

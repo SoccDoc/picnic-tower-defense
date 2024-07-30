@@ -49,20 +49,25 @@ Item {
         radius: 180 // Makes it a circle
     }
 
-    function checkAnt(ant) {
+    /*!
+        \fn FrogTower::checkAnt(antX, antY)
+
+        Checks if an ant at the given x and y values is in range of this frog tower.
+        Returns true if attack is successful, false otherwise
+    */
+    function tryToAttackAnt(antX, antY) {
         // Check if frog can attack
         if (attackIsOnCooldown)
             return;
 
         // Check if ant is in range of frog
-        var distance = findDistance(ant)
+        var distance = findDistance(antX, antY)
         if (distance > rangeIndicator.radius)
             return;
 
         // Turn frog towards ant
-        var xRelative = (ant.x+50) - root.x
-        var yRelative = (ant.y+50) - root.y
-        var slope = yRelative / xRelative
+        var xRelative = antX - root.x
+        var yRelative = antY - root.y
         var radiansAngle = Math.atan2(yRelative, xRelative)
         var degreesAngle = radiansAngle * (180 / Math.PI)
         root.rotation = degreesAngle - 90 // angle offset
@@ -71,15 +76,19 @@ Item {
         tongue.height = distance
 
         // Attack the ant!
-        ant.dealDamage(attackDamage);
         attackIsOnCooldown = true
         attackCooldown.start()
     }
 
-    function findDistance(ant) {
+    /*!
+        \fn FrogTower::findDistance(otherX, otherY)
+
+        Finds the distance between this frog tower and the given point
+    */
+    function findDistance(otherX, otherY) {
         // Find distance from frog and ant
-        var xDistance = Math.pow(root.x - (ant.x+50), 2)
-        var yDistance = Math.pow(root.y - (ant.y+50), 2)
+        var xDistance = Math.pow(root.x - otherX, 2)
+        var yDistance = Math.pow(root.y - otherY, 2)
         var realDistance = Math.sqrt(xDistance + yDistance)
         return realDistance
     }
