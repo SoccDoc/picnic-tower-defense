@@ -152,6 +152,21 @@ Window {
         }
     }
 
+    EnemySpawner {
+        id: waverSpawner
+
+        onSpawnEnemy: {
+            var component = Qt.createComponent("Ant.qml")
+            if (component.status === Component.Ready) {
+                var ant = component.createObject(mainWindow)
+            }
+            else if (component.status === Component.Error) {
+                // Ant not ready, print why
+                console.log(component.errorString())
+            }
+        }
+    }
+
     // Called when player clicks on the frog tower button
     function purchaseFrogTower() {
         // Check if player has enough money
