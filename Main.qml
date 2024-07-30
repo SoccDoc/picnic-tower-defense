@@ -11,8 +11,8 @@ Window {
     property int money: 200
     property int lives: 20
     property int frogTowerCost: 50
-    property list<FrogTower> towers
-    property list<Ant> ants
+    property var towers: []
+    property var ants: []
     readonly property int menuColumnWidth: 150
     readonly property double frameRate: 1000/60 // 60fps
 
@@ -143,28 +143,38 @@ Window {
     }
 
     function fireAllTowers() {
-        console.log("firing towers " + towers.length)
-        console.log("at ants " + ants.length)
-
         // Check if any ant is in range of any frog tower
-        for (var i = 0; i < towers.length; i++)
-            for (var j = 0; j < ants.length; j++)
-                towers[i].checkAnt(ants[j]);
+        for (var i = 0; i < towers.length; i++) {
+            for (var j = 0; j < ants.length; j++) {
+                var currentFrog = towers[i]
+                var currentAnt = ants[j]
+
+                // Adjust the ants x and y then send to tower
+                // var antImageOffset = currentAnt.imageSize / 2
+                // var adjustedAntX = currentAnt.x - antImageOffset
+                // var adjustedAntY = currentAnt.y - antImageOffset
+                var attackIsSuccessful = currentFrog.checkAnt(currentAnt);
+
+                // If frog lands an attack, deal damage
+                // if (attackIsSuccessful)
+                //     currentAnt.dealDamage(currentFrog.attackDamage)
+            }
+        }
 
         // Restart timer to fire again
         fireTowers.start()
     }
 
     // Initial testing ant
-    Ant {
-        onAntDied: {
-            // If ant reached end of path, take a life
-            if (this.reachedEnd)
-                mainWindow.lives--
+    // Ant {
+    //     onAntDied: {
+    //         // If ant reached end of path, take a life
+    //         if (this.reachedEnd)
+    //             mainWindow.lives--
 
-            mainWindow.money += 50
-        }
-    }
+    //         mainWindow.money += 50
+    //     }
+    // }
 
     EnemySpawner {
         id: waverSpawner

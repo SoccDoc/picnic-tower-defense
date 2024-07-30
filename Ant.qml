@@ -3,6 +3,7 @@ import QtQuick
 Item {
     id: root
     property int health: 100
+    property int imageSize: 100
     property bool reachedEnd: false
 
     property double xPathScaler: 1
@@ -13,8 +14,8 @@ Item {
     Image {
         id: antImage
         visible: true
-        width: 100
-        height: 100
+        width: imageSize
+        height: imageSize
         source: "qrc:/ant.png"
     }
 
@@ -88,7 +89,7 @@ Item {
         // If health is below zero, kill the ant
         if (health < 0) {
             root.antDied()
-            root.destroy()
+            //root.destroy()
         }
     }
 }

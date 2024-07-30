@@ -9,6 +9,7 @@ Item {
 
     property string rangeColor: "black"
     property bool attackIsOnCooldown: true
+    property int attackDamage: 50
 
     Timer {
         id: attackCooldown
@@ -19,30 +20,31 @@ Item {
 
     Rectangle {
         id: tongue
-        x: -3 // Offset from frog image
-        y: 30
         width: 10
+        x: -(width / 2) // Center frog tongue
         height: 50
         color: "red"
     }
 
     Image {
         id: frogImage
-        x: -60 // Center frog image
-        y: -60
         width: 120
         height: 120
+        x: -(width / 2) // Center frog image
+        y: -(height / 2)
+
         rotation: 180
         source: "qrc:/frog tower.png"
     }
 
     Rectangle {
         id: rangeIndicator
-        x: -150 // Center range indicator
-        y: -150
         width: 300 // Size of circle
         height: 300
-        color:  "#00FFFFFF" // Make circle transparent
+        x: -(width / 2) // Center range indicator
+        y: -(height / 2)
+
+        color: "#00FFFFFF" // Make circle transparent
         border.color: rangeColor
         radius: 180 // Makes it a circle
     }
@@ -63,13 +65,13 @@ Item {
         var slope = yRelative / xRelative
         var radiansAngle = Math.atan2(yRelative, xRelative)
         var degreesAngle = radiansAngle * (180 / Math.PI)
-        root.rotation = degreesAngle - 90
+        root.rotation = degreesAngle - 90 // angle offset
 
         // Stick out tongue
-        tongue.height = distance - 20
+        tongue.height = distance
 
         // Attack the ant!
-        ant.dealDamage(50);
+        ant.dealDamage(attackDamage);
         attackIsOnCooldown = true
         attackCooldown.start()
     }
