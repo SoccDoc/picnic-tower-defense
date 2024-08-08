@@ -58,12 +58,12 @@ Item {
     function tryToAttackAnt(antX, antY) {
         // Check if frog can attack
         if (attackIsOnCooldown)
-            return;
+            return false;
 
         // Check if ant is in range of frog
         var distance = findDistance(antX, antY)
         if (distance > rangeIndicator.radius)
-            return;
+            return false;
 
         // Turn frog towards ant
         var xRelative = antX - root.x
@@ -78,6 +78,7 @@ Item {
         // Attack the ant!
         attackIsOnCooldown = true
         attackCooldown.start()
+        return true;
     }
 
     /*!

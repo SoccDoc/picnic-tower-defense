@@ -5,11 +5,12 @@ Item {
     property int health: 100
     property int imageSize: 100
     property bool reachedEnd: false
+    property int antID: 0
 
     property double xPathScaler: 1
     property double yPathScaler: 1
 
-    signal antDied()
+    signal antDied(bool reachedEnd)
 
     Image {
         id: antImage
@@ -83,12 +84,14 @@ Item {
     }
 
     function dealDamage(damage) {
+        console.log("taken damage " +damage)
+
         // Take damage
         health -= damage;
 
         // If health is below zero, kill the ant
         if (health < 0) {
-            root.antDied()
+            root.antDied(reachedEnd)
             //root.destroy()
         }
     }

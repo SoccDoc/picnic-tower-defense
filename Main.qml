@@ -11,6 +11,7 @@ Window {
     property int money: 200
     property int lives: 20
     property int frogTowerCost: 50
+    property int nextAntID: 0
     property var towers: []
     property var ants: []
     readonly property int menuColumnWidth: 150
@@ -165,17 +166,6 @@ Window {
         fireTowers.start()
     }
 
-    // Initial testing ant
-    // Ant {
-    //     onAntDied: {
-    //         // If ant reached end of path, take a life
-    //         if (this.reachedEnd)
-    //             mainWindow.lives--
-
-    //         mainWindow.money += 50
-    //     }
-    // }
-
     EnemySpawner {
         id: waverSpawner
 
@@ -185,13 +175,28 @@ Window {
                 var ant = component.createObject(mainWindow)
                 ant.xPathScaler = mainWindowScalerX
                 ant.yPathScaler = mainWindowScalerY
+                ant.antID = nextAntID
+                ant.onAntDied.connect(deadAnt)
+                nextAntID++
                 ants.push(ant)
+
+                console.log("ant created")
             }
             else if (component.status === Component.Error) {
                 // Ant not ready, print why
                 console.log(component.errorString())
             }
         }
+    }
+
+    function deadAnt(reachedEnd: bool) {
+        // If ant reached end of path, take a life
+        console.log("ant dead " + reachedEnd)
+
+        if (this.reachedEnd)
+            mainWindow.lives--
+
+        mainWindow.money += 50
     }
 
     // Called when player clicks on the frog tower button
