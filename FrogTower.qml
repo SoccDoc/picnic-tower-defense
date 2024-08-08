@@ -18,6 +18,13 @@ Item {
         onTriggered: attackIsOnCooldown = false
     }
 
+    Timer {
+        id: retractTongue
+        interval: attackCooldown.interval / 2
+        running: false
+        onTriggered: tongue.height = 50
+    }
+
     Rectangle {
         id: tongue
         width: 10
@@ -78,6 +85,7 @@ Item {
         // Attack the ant!
         attackIsOnCooldown = true
         attackCooldown.start()
+        retractTongue.start()
         return true;
     }
 
