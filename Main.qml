@@ -8,11 +8,15 @@ Window {
     title: qsTr("Picnic Tower Defense")
     visibility: "FullScreen"
 
-    property int money: 200
+    property int score: 0
     property int lives: 20
+    property int money: 200
+
     property int frogTowerCost: 50
+
     property var towers: [] // list of all purchased towers
     property var ants: [] // list of all currently alive ant enemies
+
     readonly property int menuColumnWidth: 150
     readonly property double frameRate: 1000/60 // 60fps
 
@@ -67,6 +71,17 @@ Window {
 
                 text: "Close Application"
                 onClicked: mainWindow.close()
+            }
+
+            Label {
+                id: scoreLabel
+                text: "Score: " + mainWindow.score
+
+                width: 125
+                height: 25
+
+                Layout.preferredWidth: width
+                Layout.preferredHeight: height
             }
 
             Label {
@@ -187,12 +202,15 @@ Window {
 
     // Called when an ant dies
     function deadAnt(ant: Ant) {
-        // If ant reached end of path, take a life
+        // If ant reached end of path, take a life. Otherwise, increase score
         if (ant.reachedEnd)
-            mainWindow.lives--
+            mainWindow.lives -= ant.strength
+        else
+            mainWindow.score += ant.bounty
+
 
         // Give player money regardless of if ant reached the end
-        mainWindow.money += 50
+        mainWindow.money += ant.bounty
 
         // Remove the ant
         const index = ants.indexOf(ant);
