@@ -11,9 +11,8 @@ Window {
     property int money: 200
     property int lives: 20
     property int frogTowerCost: 50
-    property int nextAntID: 0
-    property var towers: []
-    property var ants: []
+    property var towers: [] // list of all purchased towers
+    property var ants: [] // list of all currently alive ant enemies
     readonly property int menuColumnWidth: 150
     readonly property double frameRate: 1000/60 // 60fps
 
@@ -172,15 +171,12 @@ Window {
         onSpawnEnemy: {
             var component = Qt.createComponent("Ant.qml")
             if (component.status === Component.Ready) {
+                // Setup ant initial values
                 var ant = component.createObject(mainWindow)
                 ant.xPathScaler = mainWindowScalerX
                 ant.yPathScaler = mainWindowScalerY
-                ant.antID = nextAntID
                 ant.onAntDied.connect(deadAnt)
-                nextAntID++
                 ants.push(ant)
-
-                console.log("ant created")
             }
             else if (component.status === Component.Error) {
                 // Ant not ready, print why
@@ -189,14 +185,20 @@ Window {
         }
     }
 
-    function deadAnt(reachedEnd: bool) {
+    // Called when an ant dies
+    function deadAnt(ant: Ant) {
         // If ant reached end of path, take a life
-        console.log("ant dead " + reachedEnd)
-
-        if (this.reachedEnd)
+        if (ant.reachedEnd)
             mainWindow.lives--
 
+        // Give player money regardless of if ant reached the end
         mainWindow.money += 50
+
+        // Remove the ant
+        const index = ants.indexOf(ant);
+        if (index > -1)
+          ants.splice(index, 1);
+        ant.kill()
     }
 
     // Called when player clicks on the frog tower button

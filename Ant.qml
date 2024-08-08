@@ -5,12 +5,11 @@ Item {
     property int health: 100
     property int imageSize: 100
     property bool reachedEnd: false
-    property int antID: 0
 
     property double xPathScaler: 1
     property double yPathScaler: 1
 
-    signal antDied(bool reachedEnd)
+    signal antDied(Ant ant)
 
     Image {
         id: antImage
@@ -70,7 +69,6 @@ Item {
         }
     }
 
-
     // Called when ant reaches end of a path segment
     function checkAntProgress() {
         // Check if the ant is still moving
@@ -84,15 +82,15 @@ Item {
     }
 
     function dealDamage(damage) {
-        console.log("taken damage " +damage)
-
         // Take damage
         health -= damage;
 
         // If health is below zero, kill the ant
-        if (health < 0) {
-            root.antDied(reachedEnd)
-            //root.destroy()
-        }
+        if (health < 0)
+            root.antDied(this)
+    }
+
+    function kill() {
+        root.destroy()
     }
 }
