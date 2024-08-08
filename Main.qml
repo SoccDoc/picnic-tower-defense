@@ -10,7 +10,7 @@ Window {
 
     property int score: 0
     property int lives: 20
-    property int money: 200
+    property int money: 100
 
     property int frogTowerCost: 50
 
@@ -71,6 +71,17 @@ Window {
 
                 text: "Close Application"
                 onClicked: mainWindow.close()
+            }
+
+            Label {
+                id: waveLabel
+                text: "Wave: " + antSpawner.currentWave
+
+                width: 125
+                height: 25
+
+                Layout.preferredWidth: width
+                Layout.preferredHeight: height
             }
 
             Label {
@@ -149,12 +160,46 @@ Window {
         }
     }
 
-    // Has all towers attempt to fire
+    // Occasionally spawns ants. Spawns more as time passes
+    EnemySpawner {
+        id: antSpawner
+
+        // Spawns one ant to run down the path
+        onSpawnEnemy: {
+            var component = Qt.createComponent("Ant.qml")
+            if (component.status === Component.Ready) {
+                // Setup ant initial values
+                var ant = component.createObject(mainWindow)
+                ant.xPathScaler = mainWindowScalerX
+                ant.yPathScaler = mainWindowScalerY
+                ant.onAntDied.connect(deadAnt)
+                ants.push(ant)
+            }
+            else if (component.status === Component.Error) {
+                // Ant not ready, print why
+                console.log(component.errorString())
+            }
+        }
+    }
+
+    // Updates the game every frame
     Timer {
-        id: fireTowers
+        id: updateTimer
         interval: frameRate
         running: true
-        onTriggered: fireAllTowers()
+        onTriggered: update()
+    }
+
+    function update() {
+        // Check if all ants are dead
+        if (ants.length == 0)
+            antSpawner.calculateEnemiesPerWave()
+
+        // Attempt to fire all towers
+        fireAllTowers()
+
+        // Start time to next frame
+        updateTimer.start()
     }
 
     function fireAllTowers() {
@@ -173,29 +218,6 @@ Window {
                 // If frog lands an attack, deal damage
                 if (attackIsSuccessful)
                     currentAnt.dealDamage(currentFrog.attackDamage)
-            }
-        }
-
-        // Restart timer to fire again
-        fireTowers.start()
-    }
-
-    EnemySpawner {
-        id: waverSpawner
-
-        onSpawnEnemy: {
-            var component = Qt.createComponent("Ant.qml")
-            if (component.status === Component.Ready) {
-                // Setup ant initial values
-                var ant = component.createObject(mainWindow)
-                ant.xPathScaler = mainWindowScalerX
-                ant.yPathScaler = mainWindowScalerY
-                ant.onAntDied.connect(deadAnt)
-                ants.push(ant)
-            }
-            else if (component.status === Component.Error) {
-                // Ant not ready, print why
-                console.log(component.errorString())
             }
         }
     }

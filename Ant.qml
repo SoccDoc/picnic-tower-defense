@@ -5,7 +5,7 @@ Item {
     property int health: 100
     property int imageSize: 100
     property bool reachedEnd: false
-    property int bounty: 50 // how much gold/points this ant is worth
+    property int bounty: 10 // how much gold/points this ant is worth
     property int strength: 1 // how many lives this ant takes
 
     property double xPathScaler: 1

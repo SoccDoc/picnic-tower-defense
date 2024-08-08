@@ -13,7 +13,7 @@ Item {
 
     Timer {
         id: attackCooldown
-        interval: 200
+        interval: 1000
         running: true
         onTriggered: attackIsOnCooldown = false
     }
