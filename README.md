@@ -1,6 +1,6 @@
 # Picnic Tower Defense
 
-[comment]: <> (An image of a green train outlined in black.)
+![A brown ant with 2 atenna](assets/ant.png)
 
 ## Description
 
@@ -12,13 +12,13 @@ Before starting this project I researched a varity of programs such as [SDL](htt
 
 Download the latest release then unzip the folder and run the file "PicnicTowerDefense.exe" to play Picnic Tower Defense yourself!
 
-[comment]: <> (Screenshot of a Windows file explorer with the "TrainEduApp.exe" file underlined in red)
+![Screenshot of a Windows file explorer with the "Picnic Tower Defense.exe" file underlined in red](assets/exeHighlight.png)
 
 ## Usage
 
 This game is meant to be shared and enjoyed! 
 
-[comment]: <> (Screenshot of a run through the educational train application after unlocking eight stations and all three trains)
+![Screenshot of someone playing Picnic Tower Defense on wave 13](assets/gameStateExample.png)
 
 ## Credits
 
