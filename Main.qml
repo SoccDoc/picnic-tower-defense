@@ -12,6 +12,8 @@ Window {
     property int lives: 20
     property int money: 100
 
+    property bool gameOver: false
+
     property int frogTowerCost: 50
 
     property var towers: [] // list of all purchased towers
@@ -195,6 +197,10 @@ Window {
         if (ants.length == 0)
             antSpawner.calculateEnemiesPerWave()
 
+        // If the player is out of lives, end game
+        if (lives <= 0)
+            gameOver = true
+
         // Attempt to fire all towers
         fireAllTowers()
 
@@ -224,12 +230,12 @@ Window {
 
     // Called when an ant dies
     function deadAnt(ant: Ant) {
-        // If ant reached end of path, take a life. Otherwise, increase score
+        // If ant reached end of path, take a life.
         if (ant.reachedEnd)
             mainWindow.lives -= ant.strength
-        else
+        // If not, increase score if game isn't over
+        else if (!gameOver)
             mainWindow.score += ant.bounty
-
 
         // Give player money regardless of if ant reached the end
         mainWindow.money += ant.bounty
@@ -262,5 +268,4 @@ Window {
             console.log(component.errorString())
         }
     }
-
 }
