@@ -10,9 +10,7 @@ Before starting this project I researched a varity of programs such as [SDL](htt
 
 ## Installation
 
-Download the latest release then unzip the folder and run the file "PicnicTowerDefense.exe" to play Picnic Tower Defense yourself!
-
-![Screenshot of a Windows file explorer with the "Picnic Tower Defense.exe" file underlined in red](assets/exeHighlight.png)
+Currently working on! Ran into some trouble creating a release package. 
 
 ## Usage
 
