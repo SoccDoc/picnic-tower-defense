@@ -22,6 +22,6 @@ This game is meant to be shared and enjoyed!
 
 This project was soley developed by me, [Benjamin Sidwell](https://github.com/SoccDoc).
 
-To code our GUI for this project I used Qml in [Qt](https://doc.qt.io/qt-6/qtqml-index.html).
+To code the GUI for this project I used [Qt QML]([https://doc.qt.io/qt-6/qtqml-index.html](https://doc.qt.io/qt-6/qtqml-index.html)).
 
 All of the art assets for this game were drawn by me in [Piskel](https://www.piskelapp.com)
