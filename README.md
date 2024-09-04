@@ -20,7 +20,7 @@ This game is meant to be shared and enjoyed!
 
 ## Credits
 
-This project was soley developed by me, [Benjamin Sidwell](https://github.com/SoccDoc).
+This project was soley developed by me, [Benjamin Sidwell](https://github.com/bensidwell).
 
 To code the GUI for this project I used [Qt QML]([https://doc.qt.io/qt-6/qtqml-index.html](https://doc.qt.io/qt-6/qtqml-index.html)).
 
